@@ -1,32 +1,21 @@
-//destructuring and Naming
-const firstName = "John";
-const lastName = "Deo";
-const age = 30;
-
-const person = {
-  firstName,
-  lastName,
-  age,
-};
-
-console.log(person.firstName);
-
-//destructuring
-const todo = {
+//json(javascript object Notaion)
+const post = {
   id: 1,
-  title: "Out of trash",
-  user: {
-    name: "john",
-  },
+  titile: "Post one",
+  body: "this is the body",
 };
-const {
-  id: todoId, //renaming
-  title,
-  user: { name }, //destructuring
-} = todo;
-console.log(todoId);
+//convet to Json string
+const str = JSON.stringify(post);
+console.log(str.id);
 
-//destucture arrays
-const numbers = [33, 34, 54, 56, 23, 67];
-const [first, second, ...rest] = numbers;
-console.log(first,second,rest);
+//parse Json
+const obj = JSON.parse(str);
+console.log(obj.id);
+
+const posts = [
+  { id: 1, titile: "Post one", body: "this is the body" },
+  { id: 1, titile: "Post one", body: "this is the body" },
+];
+
+const str2 = JSON.stringify(posts)
+console.log(str2);
