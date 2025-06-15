@@ -1,32 +1,21 @@
-// function add() {
-//   return a + b;
-// }
+// const user='john'
+// console.log(user);
+// the above variable is declared in the others.js
 
-//arrow  function syntax
-const add = (a, b) => {
-  return a + b;
-};
+//let use fe
+(function () {
+  const user = "jhon";
+  console.log(user);
+  const hello = () => console.log("hello from the IIFE");
+  hello();
+})();
 
-// implicit function
-const substract = (a, b) => a - b;
+//adding parameters to fe
+(function (name) {
+  console.log("hello " + name);
+})("saad");
 
-//can leave of () when single params
-const double = (a) => a * 2;
+(function hello() {
+  console.log("hello");
+})();
 
-// returning an object
-const createobj = () => ({
-  name: "Brad",
-});
-
-const numbers = [1, 2, 3, 4, 5];
-numbers.forEach(function (n) {
-  console.log(n);
-});
-
-//arrow function in callback
-numbers.forEach((n) => console.log(n));
-
-console.log(add(4, 5));
-console.log(substract(10, 5));
-console.log(double(10));
-console.log(createobj());
