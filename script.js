@@ -1,66 +1,32 @@
-function sayhello() {
-  console.log("hello world!");
-}
-sayhello();
+// function add() {
+//   return a + b;
+// }
 
-function add(num1, num2) {
-  console.log(num1 + num2);
-}
-add(2, 3);
-function substract(num1, num2) {
-  return num1 - num2;
-  console.log("helo");
-}
-
-const resut = substract(10, 5);
-console.log(resut);
-
-//parameter and argument
-function registorUser(user) {
-  // if (!user) {
-  //   user = "bot";
-  // }
-
-  return user + " is registered";
-}
-console.log(registorUser(" john"));
-
-//rest parameter
-function sum(...numbers) {
-  let total = 0;
-
-  for (const num of numbers) {
-    total += num;
-  }
-  return total;
-}
-
-console.log(sum(1, 2, 3));
-
-//object as params
-function loginUser(user) {
-  return `the user ${user.name} with the id of ${user.id} is logged in`;
-}
-const user = {
-  id: 1,
-  name: "john",
+//arrow  function syntax
+const add = (a, b) => {
+  return a + b;
 };
 
-console.log(loginUser(user));
-console.log(
-  loginUser({
-    id: 2,
-    name: "david",
-  })
-);
+// implicit function
+const substract = (a, b) => a - b;
 
-//array as params
-function getrandom(arr) {
-  const randomIndex = Math.floor(Math.random() * arr.length);
+//can leave of () when single params
+const double = (a) => a * 2;
 
-  const items = arr[randomIndex];
+// returning an object
+const createobj = () => ({
+  name: "Brad",
+});
 
-  console.log(items);
-}
+const numbers = [1, 2, 3, 4, 5];
+numbers.forEach(function (n) {
+  console.log(n);
+});
 
-getrandom([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+//arrow function in callback
+numbers.forEach((n) => console.log(n));
+
+console.log(add(4, 5));
+console.log(substract(10, 5));
+console.log(double(10));
+console.log(createobj());
