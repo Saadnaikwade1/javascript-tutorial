@@ -1,33 +1,31 @@
-// how the call stack works
-//Hear one push and one out 
-// function first(){
-//   console.log('first...');
-// }
-// function second(){
-//   console.log('second...');
-// }
-// function third(){
-//   console.log('third...');
-// }
-
-// first();
-// second();
-// third();
-
-// how the call stack works
-//last in first out LIFO
-
-function first(){
-  console.log('first...');
-  second();
+//logic and control flow
+if (true) {
+  console.log("This is true");
 }
-function second(){
-  console.log('second...');
-  third();
+if (false) {
+  console.log("this is not a true");
 }
-function third(){
-  console.log('third...');
+const x = 10;
+const y = 5;
+
+if (x > y) {
+  console.log(`${x} is greaterthan ${y}`);
 }
 
-first();
+if (x===y){
+  console.log(`${x} is equals to ${y}`);
+}
+else{
+console.log(`${x} is not equals to ${y}`);
+}
 
+if(x!=y){
+  const z=20;
+  console.log(`${z} is ${z}`);
+}
+
+//shorthand for if 
+if(x>y) console.log('x > y'),
+console.log(`${x} is big`);
+
+else console.log('x is < y');
