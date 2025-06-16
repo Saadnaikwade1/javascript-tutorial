@@ -1,21 +1,33 @@
-// const user='john'
-// console.log(user);
-// the above variable is declared in the others.js
+// how the call stack works
+//Hear one push and one out 
+// function first(){
+//   console.log('first...');
+// }
+// function second(){
+//   console.log('second...');
+// }
+// function third(){
+//   console.log('third...');
+// }
 
-//let use fe
-(function () {
-  const user = "jhon";
-  console.log(user);
-  const hello = () => console.log("hello from the IIFE");
-  hello();
-})();
+// first();
+// second();
+// third();
 
-//adding parameters to fe
-(function (name) {
-  console.log("hello " + name);
-})("saad");
+// how the call stack works
+//last in first out LIFO
 
-(function hello() {
-  console.log("hello");
-})();
+function first(){
+  console.log('first...');
+  second();
+}
+function second(){
+  console.log('second...');
+  third();
+}
+function third(){
+  console.log('third...');
+}
+
+first();
 
