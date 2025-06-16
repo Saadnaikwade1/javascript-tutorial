@@ -1,31 +1,34 @@
-//logic and control flow
-if (true) {
-  console.log("This is true");
-}
-if (false) {
-  console.log("this is not a true");
-}
-const x = 10;
-const y = 5;
+//if else ,nested
+const d = new Date(10, 30, 25, 6, 0, 0);
+const hours = d.getHours();
 
-if (x > y) {
-  console.log(`${x} is greaterthan ${y}`);
-}
-
-if (x===y){
-  console.log(`${x} is equals to ${y}`);
-}
-else{
-console.log(`${x} is not equals to ${y}`);
+//if else
+if (hours < 12) {
+  console.log("Good Morning");
+} else if (hours < 18) {
+  console.log("good afternoon");
+} else {
+  console.log("Good Night");
 }
 
-if(x!=y){
-  const z=20;
-  console.log(`${z} is ${z}`);
+//Nested if else
+if (hours < 12) {
+  console.log("Good Morning");
+  if (hours === 6) {
+    console.log("wake-up!");
+  }
+} else if (hours < 18) {
+  console.log("good afternoon");
+} else {
+  console.log("Good Night");
+  if (hours >= 20) {
+    console.log("zzz");
+  }
 }
 
-//shorthand for if 
-if(x>y) console.log('x > y'),
-console.log(`${x} is big`);
-
-else console.log('x is < y');
+if (hours>=7 && hours <15){
+  console.log('Its Work Time');
+}
+if(hours===6 || hours===20){
+  console.log('brush your teeth!');
+}
