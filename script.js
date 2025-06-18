@@ -1,82 +1,43 @@
-//for loop
-//for([initilise]; [condition]; [increcrement])
+//loop through an array
+//for ... of loop
+const items = ["book", "table", "chair", "kite"];
+const users = [{ name: "Brad" }, { name: "david" }, { name: "sam" }];
 
-// for (i = 0; i <= 10; i++) {
-//   if (i == 7) {
-//     console.log("7 is MY lucky number");
-//   } else {
-//     console.log(i);
-//   }
+// for(const item of items){
+//   console.log(item);
 // }
 
-// for (let i = 0; i <= 10; i++) {
-//   console.log("Number", i);
-//   for (let j = 1; j < 10; j++) {
-//     console.log(`${i} * ${j} = ${i * j}`);
-//   }
-// }
+for (const user of users) {
+  console.log(user.name);
+}
 
-// //loop through an array
-// const names = ["Brad", "david", "sam", "john", "kiran"];
-// for (let i = 0; i < names.length; i++) {
-//   if (names[i] == "kiran") {
-//     console.log(names[i] + " is best");
-//   } else {
-//     console.log(names[i]);
-//   }
-// }
+//loop over string
+const str = "Hello World!";
+for (const ch of str) {
+  console.log(ch);
+}
 
-//break
-// for(let i = 0; i<20; i++){
-//   if (i==15){
-//     console.log('Breaking...');
-//     break
-//   }
-//   console.log(i);
-// }
+//loop over map
+const map = new Map();
+map.set("name", "john");
+map.set("age", 18);
+for (const [k,v] of map){
+  console.log(k,v  );
+}
 
-//continue
-// for (let i = 0; i <= 10; i++) {
-//   if (i === 8) {
-//     console.log("Skiping...8");
-//     continue;
-//   }
 
-//   console.log(i);
-// }
+//for...in loop
+const clrobj={
+  cololr1:'red',
+  cololr2:'black',
+  cololr3:'blue',
+}
 
-//while loop
-// let i = 0;
-// while (i <= 15) {
-//   console.log("Number " + i);
-//   i++;
-// }
+for( const key in clrobj){
+  console.log(key,clrobj[key]);
+}
 
-//loop over array
-// const arr = [10, 20, 30, 40, 50, 80];
-// let i=0;
-// while (i < arr.length) {
-//   console.log(arr[i]);
-//   i++;
-// }
-
-//nesting while loop
-// let i = 1;
-// while (i <= 5) {
-//   console.log("number " + i);
-//   let j = 1;
-//   while (j <= 5) {
-//     console.log(`${i} * ${j} = ${i * j}`);
-//     j++;
-//   }
-//   i++;
-// }
-
-//do-while loop
-let i = 21;
-
-do {
-  console.log("Number " + i);
-  i++;
-} while (i <= 20);
- 
+colorarr=['yellow','Blue','Black','red'];
+for( const key in colorarr){
+  console.log(colorarr[key]);
+}
