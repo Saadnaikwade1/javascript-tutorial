@@ -1,65 +1,43 @@
-/*Take the peole array and create an array called youngPeople
-  that stores object with ONLY 'name' and 'email' propeties of 
-  all the people that are 25 and under. The name property should
-  have there first name and last name */
-const people = [
-  {
-    firstName: "Jhon",
-    lastName: "Doe",
-    email: "john@gmail.com",
-    phone: "111-111-111",
-    age: 30,
-  },
-  {
-    firstName: "Jane",
-    lastName: "Poe",
-    email: "jane@gmail.com",
-    phone: "222-222-222",
-    age: 25,
-  },
-  {
-    firstName: "Bob",
-    lastName: "Foe",
-    email: "Bob@gmail.com",
-    phone: "333-333-333",
-    age: 45,
-  },
-  {
-    firstName: "Sare",
-    lastName: "Soe",
-    email: "max@gmail.com",
-    phone: "444-444-444",
-    age: 19,
-  },
-  {
-    firstName: "Jose",
-    lastName: "Koe",
-    email: "sare@gmail.com",
-    phone: "555-555-555",
-    age: 23,
-  },
-];
+//Dom selecotors--single elements
 
-const youngPeople = people
-  .filter((person) => person.age <= 25)
-  .map((person) => ({
-    name: person.firstName + " " + person.lastName,
-    email: person.email,
-  }));
-console.log(youngPeople);
+console.log(document.getElementById("app-title"));
+console.log(document.getElementById("app-title").id);
+console.log(document.getElementById("app-title").className);
+console.log(document.getElementById("app-title").getAttribute("id"));
 
-//challenge add onlly positive no from the array
-const numbers = [2, -30, 50, 20, -12, -9, 7];
-const positive = numbers
-  .filter((number) => number > 0)
-  .reduce((acc, number) => acc + number, 0);
-console.log(positive);
+// set attribute
+document.getElementById("app-title").title = "shopping list";
+document.getElementById("app-title").setAttribute("class", "title");
 
-//challenge 3
-/* create a new array called capitalizedWord with word from the words array
-with the fisrt word of each letter is capitalized*/
-const words = ["coder", "programmer", "developer"];
-const cword = words.map((word) => {
-  return word[0].toLowerCase() + word.slice(1,word.length);
-});
-console.log(cword);
+// if we want to use var to store the above and use varible
+const title = document.getElementById("app-title");
+
+// get or change content
+console.log(title.textContent);
+title.textContent = "hello word";
+title.innerText = "hello again";
+title.innerHTML = "<strong>Shopping List</strong>";
+
+// change style
+title.style.color = "red";
+title.style.backgroundColor = "black";
+title.style.padding = "10px";
+title.style.borderRadius = "10px";
+
+// document.querySelector()
+console.log(document.querySelector("h1"));
+console.log(document.querySelector("#app-title"));
+console.log(document.querySelector(".container"));
+console.log(document.querySelector('input[type="text"]'));
+console.log(document.querySelector("li:nth-child(2)").innerText);
+
+const seconditem = document.querySelector("li:nth-child(2)");
+seconditem.innerText='apple juice'
+seconditem.style.color='red'
+
+//use this method on other element
+const list=document.querySelector('ul')
+console.log(list);
+const firstitem=list.querySelector('li')
+firstitem.style.color='blue'
+
