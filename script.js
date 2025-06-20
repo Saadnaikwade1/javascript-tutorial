@@ -1,43 +1,30 @@
-//Dom selecotors--single elements
+// //DOM selectors - Multiople element
 
-console.log(document.getElementById("app-title"));
-console.log(document.getElementById("app-title").id);
-console.log(document.getElementById("app-title").className);
-console.log(document.getElementById("app-title").getAttribute("id"));
+//querySelectorAll()
+const listItems = document.querySelectorAll(".item");
+console.log(listItems);
+// listItems[1].style.color='red'
+listItems.forEach((item, index) => {
+  item.style.color = "red";
 
-// set attribute
-document.getElementById("app-title").title = "shopping list";
-document.getElementById("app-title").setAttribute("class", "title");
+  if (index == 1) {
+    item.remove();
+  }
+  if (index == 0) {
+    item.innerHTML = `orange
+            <button class="remove-item btn-link text-red">
+            <i class="fa-solid fa-xmark"></i>
+            </button>`;
+  }
+});
 
-// if we want to use var to store the above and use varible
-const title = document.getElementById("app-title");
+const listItems2=document.getElementsByClassName('item')
+console.log(listItems2[2].innerText);
 
-// get or change content
-console.log(title.textContent);
-title.textContent = "hello word";
-title.innerText = "hello again";
-title.innerHTML = "<strong>Shopping List</strong>";
+const listItemsArray=Array.from(listItems2)
+listItemsArray.forEach((item) => {
+    console.log(item.innerText);
+});
 
-// change style
-title.style.color = "red";
-title.style.backgroundColor = "black";
-title.style.padding = "10px";
-title.style.borderRadius = "10px";
-
-// document.querySelector()
-console.log(document.querySelector("h1"));
-console.log(document.querySelector("#app-title"));
-console.log(document.querySelector(".container"));
-console.log(document.querySelector('input[type="text"]'));
-console.log(document.querySelector("li:nth-child(2)").innerText);
-
-const seconditem = document.querySelector("li:nth-child(2)");
-seconditem.innerText='apple juice'
-seconditem.style.color='red'
-
-//use this method on other element
-const list=document.querySelector('ul')
-console.log(list);
-const firstitem=list.querySelector('li')
-firstitem.style.color='blue'
-
+const listItems3=document.getElementsByTagName('li')
+console.log(listItems3[3].innerText);
