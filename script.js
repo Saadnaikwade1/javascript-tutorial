@@ -1,28 +1,30 @@
+//dom- node relation
 let output;
-//get child element
 const parent = document.querySelector(".parent");
-output = parent.children;
+output = parent.childNodes;
+output = parent.childNodes[0].textContent; //white space
+output = parent.childNodes[0].nodeName;
+output = parent.childNodes[3].textContent;
+output = parent.childNodes[3].outerHTML;
 
-output = parent.children[1];
-output = parent.children[1].innerText;
-output = parent.children[1].className;
-output = parent.children[1].nodeName;
-parent.children[1].innerText = "child two";
-parent.children[1].style.color = "red";
+output = parent.childNodes[3].innerText = "child One";
+output = parent.childNodes[5].style.color = "red";
 
-parent.firstElementChild.innerText = "Child one";
-parent.lastElementChild.innerText = "child three";
+output = parent.firstChild;
+output = parent.lasttChild;
 
-//get parent element from child
+parent.lastChild.textContent = "hello";
+
+//parent node
 const child = document.querySelector(".child");
+output = child.parentNode;
 output = child.parentElement;
-child.parentElement.style.border = "1px solid #ccc";
-child.parentElement.style.padding = "10px";
+child.parentNode.style.backgroundColor = "#ccc";
+child.parentNode.style.padding = "10px";
 
-//sibling element
+//sibling
 const secondItem = document.querySelector(".child:nth-child(2)");
-output = secondItem;
-output = secondItem.nextElementSibling;
-secondItem.nextElementSibling.style.color = "orange";
-secondItem.previousElementSibling.style.color="green"
+output=secondItem;
+output=secondItem.nextSibling;
+output=secondItem.previousSibling;
 console.log(output);
