@@ -1,30 +1,28 @@
-// //DOM selectors - Multiople element
+let output;
+//get child element
+const parent = document.querySelector(".parent");
+output = parent.children;
 
-//querySelectorAll()
-const listItems = document.querySelectorAll(".item");
-console.log(listItems);
-// listItems[1].style.color='red'
-listItems.forEach((item, index) => {
-  item.style.color = "red";
+output = parent.children[1];
+output = parent.children[1].innerText;
+output = parent.children[1].className;
+output = parent.children[1].nodeName;
+parent.children[1].innerText = "child two";
+parent.children[1].style.color = "red";
 
-  if (index == 1) {
-    item.remove();
-  }
-  if (index == 0) {
-    item.innerHTML = `orange
-            <button class="remove-item btn-link text-red">
-            <i class="fa-solid fa-xmark"></i>
-            </button>`;
-  }
-});
+parent.firstElementChild.innerText = "Child one";
+parent.lastElementChild.innerText = "child three";
 
-const listItems2=document.getElementsByClassName('item')
-console.log(listItems2[2].innerText);
+//get parent element from child
+const child = document.querySelector(".child");
+output = child.parentElement;
+child.parentElement.style.border = "1px solid #ccc";
+child.parentElement.style.padding = "10px";
 
-const listItemsArray=Array.from(listItems2)
-listItemsArray.forEach((item) => {
-    console.log(item.innerText);
-});
-
-const listItems3=document.getElementsByTagName('li')
-console.log(listItems3[3].innerText);
+//sibling element
+const secondItem = document.querySelector(".child:nth-child(2)");
+output = secondItem;
+output = secondItem.nextElementSibling;
+secondItem.nextElementSibling.style.color = "orange";
+secondItem.previousElementSibling.style.color="green"
+console.log(output);
