@@ -1,30 +1,29 @@
-//dom- node relation
-let output;
-const parent = document.querySelector(".parent");
-output = parent.childNodes;
-output = parent.childNodes[0].textContent; //white space
-output = parent.childNodes[0].nodeName;
-output = parent.childNodes[3].textContent;
-output = parent.childNodes[3].outerHTML;
+//inner.html vs createelment
+//quick and dirty
+function createListItem(item) {
+  const li = document.createElement("li");
+  li.innerHTML = `${item}
+          <button class="remove-item btn-link text-red">
+            <i class="fa-solid fa-xmark"></i>
+          </button>`;
+  document.querySelector(".items").appendChild(li);
+}
+createListItem("Eggs");
 
-output = parent.childNodes[3].innerText = "child One";
-output = parent.childNodes[5].style.color = "red";
+//Clean and performate
+function createNewItem(item) {
+  const li = document.createElement("li");
+  li.appendChild(document.createTextNode(item)); //to appent items we use text node
 
-output = parent.firstChild;
-output = parent.lasttChild;
+  const button = document.createElement("button");
+  button.className = "remove-item btn-link text-red";
 
-parent.lastChild.textContent = "hello";
+  const icon = document.createElement("i");
+  icon.className = "fa-solid fa-xmark";
 
-//parent node
-const child = document.querySelector(".child");
-output = child.parentNode;
-output = child.parentElement;
-child.parentNode.style.backgroundColor = "#ccc";
-child.parentNode.style.padding = "10px";
+  button.appendChild(icon);
+  li.appendChild(button);
 
-//sibling
-const secondItem = document.querySelector(".child:nth-child(2)");
-output=secondItem;
-output=secondItem.nextSibling;
-output=secondItem.previousSibling;
-console.log(output);
+  document.querySelector(".items").appendChild(li);
+}
+
