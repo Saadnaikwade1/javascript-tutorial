@@ -1,28 +1,32 @@
-//refractor to multiple function
-function createNewItem(item) {
-  const li = document.createElement("li");
-  li.appendChild(document.createTextNode(item)); //to appent items we use text node
-
-  const button = createButton("remove-item btn-link text-red");
-  li.appendChild(button);
-
-  document.querySelector(".items").appendChild(li);
+function removeClearButton() {
+  document.querySelector("#clear").remove();
 }
 
-function createButton(classes) {
-  const button = document.createElement("button");
-  button.className = classes;
-
-  const icon =createIcon("fa-solid fa-xmark");
-  button.appendChild(icon);
-
-  return button;
+function removeFirstItem() {
+  const ul = document.querySelector("ul");
+  const li = document.querySelector("li:first-child");
+  ul.removeChild(li);
 }
-function createIcon(classes) {
-  const icon = document.createElement("i");
-  icon.className = classes;
-  return icon;
+function removeItem(itemNumber) {
+  const ul = document.querySelector("ul");
+  const li = document.querySelector(`li:nth-Child(${itemNumber})`);
+  ul.removeChild(li);
+}
+function removeItem2(itemNumber) {
+  const ul = document.querySelector("ul");
+  const li = document.querySelectorAll("li")[itemNumber-1];
+  ul.removeChild(li);
 }
 
-createNewItem("cheese");
-createNewItem('souse')
+function removeItem3(itemNumber){
+   const li = document.querySelectorAll("li");
+   li[itemNumber-1].remove();
+}
+const removeItem4=((itemNumber)=>
+document.querySelectorAll('li')[itemNumber-1].remove())
+removeClearButton();
+// removeFirstItem();
+// removeItem();
+// removeItem2();
+// removeItem3();
+removeItem4()
