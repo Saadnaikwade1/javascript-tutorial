@@ -1,30 +1,34 @@
-//working with style and classes
-const text = document.querySelector(".card");
-const itemlist = document.querySelector(".item-list");
-const item = itemlist.querySelectorAll("li");
-function run() {
-  //classname
-  // console.log(itemlist.className);
-  // text.className = "card dark";
+//events
+const clearbtn = document.querySelector("#clear");
 
-  //classList
-  // console.log(itemlist.classList);
+function onclear() {
+  const itemlist = document.querySelector("ul");
+  const items = itemlist.querySelectorAll("li");
 
-  itemlist.classList.forEach((c)=> console.log(c))
-  // text.classList.add('dark')
-  // text.classList.remove('card')
-  // text.classList.toggle('hidden')
-  text.classList.replace('card','dark')
-
-  //change style
-  // itemlist.style.lineHeight='3'
-
-  item.forEach((item,index)=>{
-    item.style.color='red'
-    if(index==2){
-      item.style.color='green'
-    }
-  })
+  // items.forEach((item) => item.remove());////deleting the element
+  // itemlist.innerHTML=''
+  while (itemlist.firstChild) {
+    itemlist.removeChild(itemlist.firstChild);
+  }
 }
 
-document.querySelector("button").onclick = run;
+// //javascript event listeners
+// clearbtn.onclick = function () {
+//   alert("clear Items");
+// };
+// clearbtn.onclick = function () {
+//   console.log('clear items');
+// };
+
+//addeventlistner()
+// clearbtn.addEventListener("click", () => alert("clear Items"));
+// clearbtn.addEventListener("click", () => console.log("clear Items"));
+////hear we can handle both alert and console
+
+clearbtn.addEventListener("click", onclear); //hear we use onclear as fun^
+
+// setTimeout(()=>clearbtn.removeEventListener('click',onclear), 5000);
+//after 5 sec the timout the clear button get disabled
+
+// setTimeout(() => clearbtn.click(), 5000);
+//hear after 5 sec the the clear btn alert come
