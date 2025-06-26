@@ -1,34 +1,27 @@
 const logo = document.querySelector("img");
+function onClick(e) {
+  // console.log(e.target);
+  // console.log(e.currentTarget);
+  // e.currentTarget.style.background='black'
+  // console.log(e.type);
+  // console.log(e.timeStamp);
+  // console.log(e.clientX);
+  // console.log(e.clientY);
+  // console.log(e.offsetX);
+  // console.log(e.offsetY);
+  // console.log(e.pageX);
+  // console.log(e.pageY);
+  console.log(e.screenX);
+  console.log(e.screenY);
+}
+document.querySelector("a").addEventListener("click", function (e) {
+  e.preventDefault();
+  console.log("Link was already clicked");
+});
 
-const onclick = () => console.log("click event");
-const onDoubleclick = () => {
-  if (document.body.style.backgroundColor !== "purple") {
-    document.body.style.backgroundColor = "purple";
-    document.body.style.color = "white";
-  } else {
-    document.body.style.backgroundColor = "white";
-    document.body.style.color = "black";
-  }
-};
-const onRightClick = () => console.log("right click event");
-const onMouseDown = () => console.log("mouse down event");
-const onMouseUp = () => console.log("mouse up event");
-const onMouseWheel = () => console.log("mouse wheel event");
-const onMouseover=()=> console.log('on Mouse over');
-const onMouseOut=()=> console.log('on Mouse Out');
-const onDragStart=()=>console.log('drag start event');
-const onDrag=()=>console.log('drag event');
-const onDragEnd=()=>console.log('drag end event');
+function onDrag(e){
+  document.querySelector('h1').textContent=`X ${e.clientX} Y ${e.clientY}`
+}
 
-//event listener
-logo.addEventListener("click", onclick);
-logo.addEventListener("dblclick", onDoubleclick);
-logo.addEventListener("contextmenu", onRightClick);
-logo.addEventListener("mousedown", onMouseDown);
-logo.addEventListener("mouseup", onMouseUp);
-logo.addEventListener("wheel", onMouseWheel);
-logo.addEventListener("mouseover",onMouseover);
-logo.addEventListener("mouseout",onMouseOut);
-logo.addEventListener("dragstart",onDragStart);
-logo.addEventListener("drag",onDrag)
-logo.addEventListener("dragend",onDragEnd)
+logo.addEventListener("click", onClick);
+logo.addEventListener("drag", onDrag);
