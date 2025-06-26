@@ -1,34 +1,34 @@
-//events
-const clearbtn = document.querySelector("#clear");
+const logo = document.querySelector("img");
 
-function onclear() {
-  const itemlist = document.querySelector("ul");
-  const items = itemlist.querySelectorAll("li");
-
-  // items.forEach((item) => item.remove());////deleting the element
-  // itemlist.innerHTML=''
-  while (itemlist.firstChild) {
-    itemlist.removeChild(itemlist.firstChild);
+const onclick = () => console.log("click event");
+const onDoubleclick = () => {
+  if (document.body.style.backgroundColor !== "purple") {
+    document.body.style.backgroundColor = "purple";
+    document.body.style.color = "white";
+  } else {
+    document.body.style.backgroundColor = "white";
+    document.body.style.color = "black";
   }
-}
+};
+const onRightClick = () => console.log("right click event");
+const onMouseDown = () => console.log("mouse down event");
+const onMouseUp = () => console.log("mouse up event");
+const onMouseWheel = () => console.log("mouse wheel event");
+const onMouseover=()=> console.log('on Mouse over');
+const onMouseOut=()=> console.log('on Mouse Out');
+const onDragStart=()=>console.log('drag start event');
+const onDrag=()=>console.log('drag event');
+const onDragEnd=()=>console.log('drag end event');
 
-// //javascript event listeners
-// clearbtn.onclick = function () {
-//   alert("clear Items");
-// };
-// clearbtn.onclick = function () {
-//   console.log('clear items');
-// };
-
-//addeventlistner()
-// clearbtn.addEventListener("click", () => alert("clear Items"));
-// clearbtn.addEventListener("click", () => console.log("clear Items"));
-////hear we can handle both alert and console
-
-clearbtn.addEventListener("click", onclear); //hear we use onclear as fun^
-
-// setTimeout(()=>clearbtn.removeEventListener('click',onclear), 5000);
-//after 5 sec the timout the clear button get disabled
-
-// setTimeout(() => clearbtn.click(), 5000);
-//hear after 5 sec the the clear btn alert come
+//event listener
+logo.addEventListener("click", onclick);
+logo.addEventListener("dblclick", onDoubleclick);
+logo.addEventListener("contextmenu", onRightClick);
+logo.addEventListener("mousedown", onMouseDown);
+logo.addEventListener("mouseup", onMouseUp);
+logo.addEventListener("wheel", onMouseWheel);
+logo.addEventListener("mouseover",onMouseover);
+logo.addEventListener("mouseout",onMouseOut);
+logo.addEventListener("dragstart",onDragStart);
+logo.addEventListener("drag",onDrag)
+logo.addEventListener("dragend",onDragEnd)
