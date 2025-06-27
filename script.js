@@ -1,27 +1,32 @@
-const logo = document.querySelector("img");
-function onClick(e) {
-  // console.log(e.target);
-  // console.log(e.currentTarget);
-  // e.currentTarget.style.background='black'
-  // console.log(e.type);
-  // console.log(e.timeStamp);
-  // console.log(e.clientX);
-  // console.log(e.clientY);
-  // console.log(e.offsetX);
-  // console.log(e.offsetY);
-  // console.log(e.pageX);
-  // console.log(e.pageY);
-  console.log(e.screenX);
-  console.log(e.screenY);
-}
-document.querySelector("a").addEventListener("click", function (e) {
-  e.preventDefault();
-  console.log("Link was already clicked");
-});
+//Key-board event and key properties
+const itemInput = document.getElementById("item-input");
+// const onKeyPress = (e) => console.log("keypress");
+// const onKeyUp = (e) => console.log("keyup");
+const onKeyDown = (e) => {
+  // key
+  // if(e.key=="Enter"){
+  //   alert('You Pressed Enter')
+  // }
 
-function onDrag(e){
-  document.querySelector('h1').textContent=`X ${e.clientX} Y ${e.clientY}`
-}
+  // keyCode
+  //https://keyjs.dev/#
+  if (e.keyCode === 13) {
+    alert("you pressed enter");
+  }
 
-logo.addEventListener("click", onClick);
-logo.addEventListener("drag", onDrag);
+  //code
+  console.log(e.code);
+  if (e.repeat) {
+    console.log("You are Holding Down" + e.key);
+  }
+  // console.log("Shift:  " + e.shiftKey);
+  // console.log("Control: " + e.ctrltKey);
+  // console.log("Alt: " + e.altKey);
+
+  if (e.shiftKey && e.key === "K") {
+    console.log("You entered the shiftkey+k");
+  }
+};
+
+// itemInput.addEventListener("keypress", onKeyPress);
+itemInput.addEventListener("keydown", onKeyDown);
