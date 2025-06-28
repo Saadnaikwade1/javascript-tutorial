@@ -1,32 +1,46 @@
-//Key-board event and key properties
-const itemInput = document.getElementById("item-input");
-// const onKeyPress = (e) => console.log("keypress");
-// const onKeyUp = (e) => console.log("keyup");
-const onKeyDown = (e) => {
-  // key
-  // if(e.key=="Enter"){
-  //   alert('You Pressed Enter')
-  // }
+// Method 1
+// window.addEventListener("keydown", (e) => {
+//   const insert = document.getElementById("insert");
 
-  // keyCode
-  //https://keyjs.dev/#
-  if (e.keyCode === 13) {
-    alert("you pressed enter");
+//   insert.innerHTML = `
+//     <div class="key">
+//       ${e.key}
+//       <small>e.key</small>
+//     </div>
+//     <div class="key">
+//       ${e.keyCode}
+//       <small>e.keyCode</small>
+//     </div>
+//     <div class="key">
+//       ${e.code}
+//       <small>e.code</small>
+//     </div>`;
+// });
+
+// Method 2
+function showKeyCodes(e) {
+  const insert = document.getElementById("insert");
+  insert.innerHTML='';
+
+  const keyCodes = {
+    "e.key": e.key === " " ? "Space" : e.key,
+    "e.keyCode": e.keyCode,
+    "e.code": e.code,
+  };
+  for(let key in keyCodes){
+    const div =document.createElement('div');
+    div.className='key';
+    const small=document.createElement('small')
+
+    const keyText = document.createTextNode(key);
+    const valueText=document.createTextNode(keyCodes[key]);
+
+    small.appendChild(keyText);
+    div.appendChild(valueText);
+    div.appendChild(small);
+    
+    insert.appendChild(div);
   }
+}
 
-  //code
-  console.log(e.code);
-  if (e.repeat) {
-    console.log("You are Holding Down" + e.key);
-  }
-  // console.log("Shift:  " + e.shiftKey);
-  // console.log("Control: " + e.ctrltKey);
-  // console.log("Alt: " + e.altKey);
-
-  if (e.shiftKey && e.key === "K") {
-    console.log("You entered the shiftkey+k");
-  }
-};
-
-// itemInput.addEventListener("keypress", onKeyPress);
-itemInput.addEventListener("keydown", onKeyDown);
+window.addEventListener("keydown", showKeyCodes);
