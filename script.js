@@ -1,46 +1,32 @@
-// Method 1
-// window.addEventListener("keydown", (e) => {
-//   const insert = document.getElementById("insert");
+//form submission and form object
+const form = document.getElementById("item-form");
+function onSubmit(e) {
+  e.preventDefault();
+  const item = document.getElementById("item-input").value;
+  const priority = document.getElementById("priority-input");
 
-//   insert.innerHTML = `
-//     <div class="key">
-//       ${e.key}
-//       <small>e.key</small>
-//     </div>
-//     <div class="key">
-//       ${e.keyCode}
-//       <small>e.keyCode</small>
-//     </div>
-//     <div class="key">
-//       ${e.code}
-//       <small>e.code</small>
-//     </div>`;
-// });
-
-// Method 2
-function showKeyCodes(e) {
-  const insert = document.getElementById("insert");
-  insert.innerHTML='';
-
-  const keyCodes = {
-    "e.key": e.key === " " ? "Space" : e.key,
-    "e.keyCode": e.keyCode,
-    "e.code": e.code,
-  };
-  for(let key in keyCodes){
-    const div =document.createElement('div');
-    div.className='key';
-    const small=document.createElement('small')
-
-    const keyText = document.createTextNode(key);
-    const valueText=document.createTextNode(keyCodes[key]);
-
-    small.appendChild(keyText);
-    div.appendChild(valueText);
-    div.appendChild(small);
-    
-    insert.appendChild(div);
+  if (item === "" || item === "0") {
+    alert("Please fill in all fields");
+    return;
   }
+  console.log(item, priority.value);
 }
 
-window.addEventListener("keydown", showKeyCodes);
+function onSubmit2(e){
+    e.preventDefault();
+    const formData= new FormData(form);
+
+    // const item = formData.get('item');
+    // const priority=formData.get('priority');
+
+    const entries=formData.entries();
+    // console.log(entries);
+
+    for( let entry of entries){
+        console.log(entry[0]);
+    }
+    // console.log(item,priority);
+
+}
+
+form.addEventListener("submit", onSubmit2);
