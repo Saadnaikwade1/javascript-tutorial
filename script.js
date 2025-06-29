@@ -1,32 +1,20 @@
-//form submission and form object
-const form = document.getElementById("item-form");
-function onSubmit(e) {
-  e.preventDefault();
-  const item = document.getElementById("item-input").value;
-  const priority = document.getElementById("priority-input");
+//Event Bubbling
+const button = document.querySelector("form button");
+const div = document.querySelector("form:nth-child(2)");
+const form = document.querySelector("form");
 
-  if (item === "" || item === "0") {
-    alert("Please fill in all fields");
-    return;
-  }
-  console.log(item, priority.value);
-}
+button.addEventListener("click", (e) => {
+  alert("The button was clicked");
+  e.stopPropagation();
+});
 
-function onSubmit2(e){
-    e.preventDefault();
-    const formData= new FormData(form);
+div.addEventListener("click", () => {
+  alert("The div was clicked");
+});
 
-    // const item = formData.get('item');
-    // const priority=formData.get('priority');
-
-    const entries=formData.entries();
-    // console.log(entries);
-
-    for( let entry of entries){
-        console.log(entry[0]);
-    }
-    // console.log(item,priority);
-
-}
-
-form.addEventListener("submit", onSubmit2);
+form.addEventListener("click", () => {
+  alert("Form was clicked");
+});
+document.body.addEventListener('click',()=>{
+    alert('The body was clicked')
+})
