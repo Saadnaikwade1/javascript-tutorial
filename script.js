@@ -1,20 +1,15 @@
-//Event Bubbling
-const button = document.querySelector("form button");
-const div = document.querySelector("form:nth-child(2)");
-const form = document.querySelector("form");
+// setTimeout(changeText,2000);
 
-button.addEventListener("click", (e) => {
-  alert("The button was clicked");
-  e.stopPropagation();
-});
+function changeText() {
+  document.querySelector("h1").textContent = "Hello from callback";
+}
 
-div.addEventListener("click", () => {
-  alert("The div was clicked");
-});
+const timerId = setTimeout(changeText, 3000);
 
-form.addEventListener("click", () => {
-  alert("Form was clicked");
-});
-document.body.addEventListener('click',()=>{
-    alert('The body was clicked')
-})
+//to cancel the timer
+document
+  .querySelector("#cancel")
+  .addEventListener("click", () => { console.log(timerId)
+    clearTimeout(timerId)
+    console.log('Timer Cancelled')});
+   
