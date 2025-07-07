@@ -1,29 +1,29 @@
-// const intervalID=setInterval(myCallback,1000,'hello')
-// function myCallback(a ){
-//   console.log(a,Date.now());
+// function toggle(e){
+//   e.target.classList.toggle('danger')
 // }
-let intervalID;
-function startChange() {
-  if (!intervalID) {
-    intervalID = setInterval(changeRandomColor, 1000);
-  }
+
+// document.querySelector('button').addEventListener('click',toggle)
+
+const posts = [
+  { title: "Post One", body: "This is post one" },
+  { title: "Post Two", body: "This is post two" },
+];
+
+function creatPost(post, cb) {
+  setTimeout(() => {
+    posts.push(post);
+    cb();
+  }, 2000);
 }
-// function changeColor() {
-//   if (document.body.style.backgroundColor !== "black") {
-//     document.body.style.backgroundColor = "black";
-//     document.body.style.color = "white";
-//   } else {
-//     document.body.style.backgroundColor = "white";
-//     document.body.style.color = "black";
-//   }
-// }
-function changeRandomColor() {
-  const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-  document.body.style.backgroundColor=`#${randomColor}`
+function getposts() {
+  setTimeout(() => {
+    posts.forEach(function (post) {
+      const div = document.createElement("div");
+      div.innerHTML = `<strong>${post.title}</strong> - ${post.body}`;
+      document.querySelector("#posts").appendChild(div);
+    });
+  }, 1000);
 }
 
-function stopChange() {
-  clearInterval(intervalID);
-} 
-document.getElementById("start").addEventListener("click", startChange);
-document.getElementById("stop").addEventListener("click", stopChange);
+// getposts();
+creatPost({ title: "Post three", body: "This is post three" }, getposts);
