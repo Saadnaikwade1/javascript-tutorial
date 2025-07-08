@@ -1,27 +1,46 @@
-const promise = new Promise((resolve, reject) => {
-  //Do some async task
+// function toggle(e) {
+//   e.target.classList.toggle('danger');
+// }
+
+// document.querySelector('button').addEventListener('click', toggle);
+
+const posts = [
+  { title: "Post One", body: "This is post one" },
+  { title: "Post Two", body: "This is post two" },
+];
+
+function createPost(post, cb) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let error=false;
+      if (!error){
+        posts.push(post);
+      resolve();
+      }else{
+        reject('somthing went wrong!');
+      }
+      
+    }, 2000);
+  });
+}
+
+function getPosts() {
   setTimeout(() => {
-    console.log("async task complete");
-    resolve();
+    posts.forEach(function (post) {
+      const div = document.createElement("div");
+      div.innerHTML = `<strong>${post.title}</strong> - ${post.body}`;
+      document.querySelector("#posts").appendChild(div);
+    });
   }, 1000);
-});
+}
 
-promise.then(() => {
-  console.log("promise consumed..");
-});
+function showError(error){
+  const h3 =document.createElement('h3')
+  h3.innerHTML=`<strong>${error}<strong/>`
+  document.getElementById('posts').appendChild(h3)
+}
 
-const getUser = new Promise((resolve, reject) => {
-  //Do some async task
-  setTimeout(() => {
-    let error = true;
-    if (!error) {
-      resolve({ name: "john", age: 30 });
-    } else {
-      reject("Error:something went wrong!");
-    }
-  }, 1000);
-});
 
-getUser.then((user) => console.log(user)).catch((error) => console.log(error))
-  .finally(()=>console.log('The promise has been resolved or rejected'))
-console.log("Hello from global scope");
+createPost({ title: "Post Three", body: "This is post" })
+.then(getPosts)
+.catch(showError)
