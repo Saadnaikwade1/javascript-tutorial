@@ -1,46 +1,34 @@
-// function toggle(e) {
-//   e.target.classList.toggle('danger');
-// }
-
-// document.querySelector('button').addEventListener('click', toggle);
-
-const posts = [
-  { title: "Post One", body: "This is post one" },
-  { title: "Post Two", body: "This is post two" },
-];
-
-function createPost(post, cb) {
+function getData(endpoint) {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      let error=false;
-      if (!error){
-        posts.push(post);
-      resolve();
-      }else{
-        reject('somthing went wrong!');
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET", endpoint);
+
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4) {
+        if (this.status === 200) {
+          resolve(JSON.parse(this.responseText));
+        } else {
+          reject("Something went wrong");
+        }
       }
-      
-    }, 2000);
+    };
+
+    setTimeout(() => {
+      xhr.send();
+    }, Math.floor(Math.random() * 3000) + 1000);
   });
 }
 
-function getPosts() {
-  setTimeout(() => {
-    posts.forEach(function (post) {
-      const div = document.createElement("div");
-      div.innerHTML = `<strong>${post.title}</strong> - ${post.body}`;
-      document.querySelector("#posts").appendChild(div);
-    });
-  }, 1000);
-}
+const moviesPromise = getData("./movies.json");
+const actorsPromise = getData("./actor.json");
+const directorsPromise = getData("./director.json");
 
-function showError(error){
-  const h3 =document.createElement('h3')
-  h3.innerHTML=`<strong>${error}<strong/>`
-  document.getElementById('posts').appendChild(h3)
-}
+const dummyPromise= new Promise((resolve,reject)=>{
+resolve('hello world!')})
 
-
-createPost({ title: "Post Three", body: "This is post" })
-.then(getPosts)
-.catch(showError)
+Promise.all([moviesPromise,actorsPromise,directorsPromise,dummyPromise])
+.then((data)=>{
+  console.log(data);
+})
+.catch((error)=>console.log(error));
