@@ -1,34 +1,20 @@
-function getData(endpoint) {
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
+// try {
+//   console.log(x);
+// } catch (error) {
+//   console.log("Error: " + error);
+// }
 
-    xhr.open("GET", endpoint);
-
-    xhr.onreadystatechange = function () {
-      if (this.readyState === 4) {
-        if (this.status === 200) {
-          resolve(JSON.parse(this.responseText));
-        } else {
-          reject("Something went wrong");
-        }
-      }
-    };
-
-    setTimeout(() => {
-      xhr.send();
-    }, Math.floor(Math.random() * 3000) + 1000);
-  });
+function double(number) {
+  if (isNaN(number)) {
+    throw new Error(number + " is not a number");
+  }
+  return number * 2;
 }
 
-const moviesPromise = getData("./movies.json");
-const actorsPromise = getData("./actor.json");
-const directorsPromise = getData("./director.json");
+try{
+  const y= double('hello')
+  console.log(y);
+}catch(error){
+  console.log(error);
 
-const dummyPromise= new Promise((resolve,reject)=>{
-resolve('hello world!')})
-
-Promise.all([moviesPromise,actorsPromise,directorsPromise,dummyPromise])
-.then((data)=>{
-  console.log(data);
-})
-.catch((error)=>console.log(error));
+}
