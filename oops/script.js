@@ -12,14 +12,16 @@ Rectangle.prototype.perimeter = function () {
 Rectangle.prototype.isSquare = function () {
   return this.width === this.height;
 };
-Rectangle.prototype.name = function (newName) {
+Rectangle.prototype.changeName = function (newName) {
   return (this.name = newName);
 };
 
 const rect1 = new Rectangle("rectangle 1", 10, 20);
 const rect2 = new Rectangle("rectangle 2", 20, 20);
 console.log(rect1);
-console.log(rect1.area());
+console.log(rect1.area());~
 console.log(rect1.perimeter());
 console.log(rect1.isSquare());
+console.log(rect1.name);
+rect1.changeName("harry");
 console.log(rect1.name);
