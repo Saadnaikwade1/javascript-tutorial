@@ -1,0 +1,17 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 100px;
+}
+
+h1{
+    text-align: center;
+}
+#box{
+    border: 2px solid black;
+    background:linear-gradient(black,red);
+    color: white;
+    border-radius: 50px 25px ;
+} 
