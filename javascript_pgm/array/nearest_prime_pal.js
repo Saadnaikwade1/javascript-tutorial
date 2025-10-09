@@ -1,6 +1,7 @@
 let n = 12;
 t = n - 1;
 while (true) {
+    // upside checkes..
   let f = true;
   for (let i = 2; i < n; i++) {
     if (n % i === 0) {
@@ -25,6 +26,7 @@ while (true) {
   } else {
     n++;
   }
+  // --lower side checks..
   let f2 = true;
   for (let i = 2; i < t; i++) {
     if (t % i === 0) {
