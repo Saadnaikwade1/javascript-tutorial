@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hiding</title>
+  </head>
+  <body>
+    <p onclick="fun(this)">tag 1</p>
+    <p onclick="fun(this)">tag 1</p>
+    <p onclick="fun(this)">tag 1</p>
+    <div onclick="fun(this)">Lorem, ipsum.</div>
+    <p onclick="fun(this)">Lorem ipsum dolor sit.</p>
+    <script>
+      function fun(e1) {
+        e1.style.display = "none";
+      }
+    </script>
+  </body>
+</html>
