@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      body {
+        background-color: #f5f5f5;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 50px;
+      }
+      h1 {
+        font-size: 50px;
+        font-weight: bold;
+        font-style: italic;
+      }
+      input[type="text"] {
+        width: 250px;
+        padding: 10px 15px;
+        font-size: 1rem;
+        border: 2px solid #dcdde1;
+        border-radius: 5px;
+        outline: none;
+        transition: border 0.3s;
+      }
+      input[type="text"]:focus {
+        border-color: darkkhaki;
+      }
+      button {
+        padding: 10px 15px;
+        margin-left: 10px;
+        background-color: blue;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.3s;
+      }
+      button:hover {
+        background-color: rgba(0, 0, 250, 0.5);
+      }
+      table {
+        margin-top: 30px;
+        border-collapse: collapse;
+        width: 30%;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      table tr {
+        border-bottom: 1px solid #f1f2f6;
+      }
+      table td {
+        padding: 12px 15px;
+        text-align: left;
+        font-size: 1rem;
+      }
+      .fa-pen,
+      .fa-trash {
+        cursor: pointer;
+        color: blue;
+        margin-left: 10px;
+        transition: color 0.3s;
+      }
+      .fa-trash:hover {
+        color: red;
+      }
+      .fa-pen:hover {
+        color: orange;
+      }
+      @media screen and (max-width: 600px) {
+        h1 {
+          font-size: 35px;
+        }
+        input[type="text"] {
+          width: 90%;
+          padding-left: 10px;
+
+          margin-bottom: 10px;
+        }
+
+        button {
+          width: 50%;
+          margin: 5px 0 0 0;
+        }
+        table {
+          width: 90%;
+        }
+      }
+    </style>
+    <title>Task Manager</title>
+  </head>
+  <body>
+    <h1>Task Manager</h1>
+    <div>
+      <input type="text" placeholder="Enter Task" />
+      <button onclick="add()">Add</button>
+      <button style="display: none" onclick="upd()">Update</button>
+    </div>
+    <table></table>
+    <script>
+      let tasks = [],
+        eind;
+      let ipr = document.querySelector("input");
+      let btnr = document.querySelectorAll("button");
+      let tblr = document.querySelector("table");
+
+      function disp() {
+        let s = "";
+        for (let i = 0; i < tasks.length; i++) {
+          s += `<tr>
+      <td>${tasks[i]}</td>
+      <td><i class="fa-solid fa-pen" onclick="edit(${i})"></i></td>
+      <td><i class="fa-solid fa-trash" onclick="del(${i})"></i></td>
+    </tr>`;
+        }
+        tblr.innerHTML = s;
+      }
+
+      function add() {
+        if (ipr.value.trim() === "") return; // ignore empty input
+        tasks.push(ipr.value);
+        disp();
+        ipr.value = "";
+      }
+
+      function edit(ind) {
+        ipr.value = tasks[ind];
+        btnr[0].style.display = "none";
+        btnr[1].style.display = "inline-block";
+        eind = ind;
+      }
+
+      function upd() {
+        tasks[eind] = ipr.value;
+        disp();
+        btnr[1].style.display = "none";
+        btnr[0].style.display = "inline-block";
+        ipr.value = "";
+      }
+
+      function del(ind) {
+        tasks.splice(ind, 1);
+        disp();
+      }
+    </script>
+  </body>
+</html>
