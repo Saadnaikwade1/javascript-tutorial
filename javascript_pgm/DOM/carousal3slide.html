@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3 slide carousal</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+      .con {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .card-con {
+        width: 75%;
+        height: 50%;
+        border: 5px solid red;
+        padding: 10px 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+      }
+      .card-con img {
+        width: 30%;
+        height: 100%;
+        border-radius: 10px;
+      }
+      .fa-greater-than,
+      .fa-less-than {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 2px solid gray;
+        font-size: 18px;
+        font-weight: bolder;
+        color: brown;
+        padding: 10px 5px;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: beige;
+        z-index: 100;
+      }
+      .fa-greater-than {
+        right: 5px;
+      }
+      .fa-less-than {
+        left: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="con">
+      <div class="card-con">
+        <i class="fa-solid fa-greater-than" onclick="fwd()"></i>
+        <i class="fa-solid fa-less-than" onclick="bkw()"></i>
+        <img
+          src="https://images.pexels.com/photos/421927/pexels-photo-421927.jpeg"
+          alt=""
+        />
+        <img
+          src="https://images.pexels.com/photos/1619569/pexels-photo-1619569.jpeg"
+          alt=""
+        />
+        <img
+          src="https://images.pexels.com/photos/548084/pexels-photo-548084.jpeg"
+          alt=""
+        />
+      </div>
+    </div>
+    <script>
+      let imgs = [
+        "c1.jpg",
+        "https://images.pexels.com/photos/1619569/pexels-photo-1619569.jpeg",
+        "https://images.pexels.com/photos/548084/pexels-photo-548084.jpeg",
+        "https://images.pexels.com/photos/220769/pexels-photo-220769.jpeg",
+        "https://images.pexels.com/photos/366283/tianjin-twilight-city-scenery-366283.jpeg",
+        "https://images.pexels.com/photos/462331/pexels-photo-462331.jpeg",
+        "c5.jpg",
+      ];
+      let currentIndex = [0, 1, 2];
+      let i = 0;
+      let imgr = document.querySelectorAll(".card-con img");
+      let n = imgs.length;
+      let updarr = () => {
+        currentIndex = [(i + n) % n, (i + 1 + n) % n, (i + 2 + n) % n];
+        for (let j = 0; j < imgr.length; j++) {
+          imgr[j].src = imgs[currentIndex[j]];
+        }
+      };
+
+      let fwd = () => {
+        i++;
+        updarr();
+      };
+      let bkw = () => {
+        i--;
+        updarr();
+      };
+      setInterval(updarr, 30000);
+    </script>
+  </body>
+</html>

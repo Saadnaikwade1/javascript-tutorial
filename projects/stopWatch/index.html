@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StopWatch</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+      }
+
+      h1 {
+        font-size: 3rem;
+        color: #fff;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        margin-bottom: 40px;
+      }
+
+      .stopwatch {
+        background: #e0e5ec;
+        padding: 40px 60px;
+        border-radius: 25px;
+        box-shadow: 5px 10px 10px #babecc, -5px -5px 20px #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .time {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #333;
+        letter-spacing: 2px;
+        background: linear-gradient(to right, #ff8a00, #e52e71);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 20px;
+      }
+
+      .buttons button {
+        padding: 12px 30px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 5px 5px 15px #babecc, -5px -5px 15px #ffffff;
+        background: #e0e5ec;
+      }
+
+      .buttons button:hover {
+        box-shadow: inset 5px 5px 15px #babecc, inset -5px -5px 15px #ffffff;
+        transform: translateY(2px);
+      }
+
+      .buttons button:active {
+        transform: translateY(4px);
+      }
+
+      /* Responsive */
+      @media (max-width: 500px) {
+        .stopwatch {
+          padding: 30px 40px;
+        }
+        .time {
+          font-size: 2.5rem;
+        }
+        .buttons button {
+          padding: 10px 25px;
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>StopWatch</h1>
+    <div class="stopwatch">
+      <div class="time" id="time">00:00</div>
+      <div class="buttons">
+        <button onclick="fun(this)">Start</button>
+        <button onclick="reset()">Reset</button>
+      </div>
+    </div>
+
+    <script>
+      const timeDiv = document.getElementById("time");
+      let c = 0,
+        m = 0,
+        iid = -1;
+
+      const inc = () => {
+        c += 1;
+        if (c === 60) {
+          m += 1;
+          c = 0;
+        }
+        timeDiv.textContent = `${m < 10 ? "0" + m : m}:${c < 10 ? "0" + c : c}`;
+      };
+
+      const fun = (btn) => {
+        if (btn.textContent === "Start") {
+          iid = setInterval(inc, 1000);
+          btn.textContent = "Stop";
+        } else {
+          clearInterval(iid);
+          btn.textContent = "Start";
+        }
+      };
+
+      const reset = () => {
+        clearInterval(iid);
+        document.querySelector(".buttons button").textContent = "Start";
+        c = 0;
+        m = 0;
+        timeDiv.textContent = "00:00";
+      };
+    </script>
+  </body>
+</html>

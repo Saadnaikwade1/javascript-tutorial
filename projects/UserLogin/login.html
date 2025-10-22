@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <div style="color: red;"></div>
+    <input type="email" placeholder="Enter email">
+    <input type="password" placeholder="Enter password">
+    <button onclick="login()">Login</button>
+    <div>New User ?<a href="register.html"> Register</a></div>
+
+    <script>
+        let ipr=document.querySelectorAll("input")
+        let login=()=>{
+            let dbEmail=localStorage.getItem("email")
+            let dbPass=localStorage.getItem("pass")
+            if(dbEmail==ipr[0].value && dbPass==ipr[1].value){
+                window.location="landing.html"
+            }
+            else{
+                document.querySelector("div").innerHTML="Email/pass is wrong!"
+            }
+        }
+    </script>
+</body>
+
+</html>

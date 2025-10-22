@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carousel</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .con {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+      }
+      .con img {
+        width: 100%;
+        height: 100%;
+      }
+      .card {
+        width: 40%;
+        border: 2px solid;
+        padding: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        color: white;
+        text-align: justify;
+        background: transparent;
+      }
+      .card button {
+        padding: 10px 25px;
+        background: transparent;
+        font-size: 20px;
+        color: white;
+        border-color: wheat;
+      }
+      h1 {
+        color: crimson;
+      }
+      p {
+        color: #f5f5f6;
+      }
+      .fa-greater-than,
+      .fa-less-than {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 2px solid gray;
+        font-size: 30px;
+        font-weight: bolder;
+        color: brown;
+        padding: 20px 10px;
+        cursor: pointer;
+      }
+      .fa-greater-than {
+        right: 10px;
+      }
+      .fa-less-than {
+        left: 10px;
+      }
+      .dotcon {
+        position: absolute;
+        bottom: 10px;
+        left: 0px;
+        width: 100%;
+        text-align: center;
+        font-size: 25px;
+        color: chocolate;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="con">
+      <img src="c1.jpg" alt="" />
+      <i class="fa-solid fa-greater-than" onclick="fwd()"></i>
+      <i class="fa-solid fa-less-than" onclick="bkw()"></i>
+      <div class="dotcon">
+        <i class="fa-regular fa-circle" onclick="setI(0)"></i>
+        <i class="fa-regular fa-circle" onclick="setI(1)"></i>
+        <i class="fa-regular fa-circle" onclick="setI(2)"></i>
+        <i class="fa-regular fa-circle" onclick="setI(3)"></i>
+        <i class="fa-regular fa-circle" onclick="setI(4)"></i>
+        <i class="fa-regular fa-circle" onclick="setI(5)"></i>
+      </div>
+      <div class="card">
+        <h1>Heading-1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
+          sed autem natus unde esse similique accusantium beatae vel eius non!
+        </p>
+        <button>Know More....</button>
+      </div>
+    </div>
+    <script>
+      let arr = [
+        {
+          img: "c1.jpg",
+          hd: "Heading-1",
+          text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatemsed autem natus unde esse similique accusantium beatae vel eius-1",
+        },
+        {
+          img: "c2.jpg",
+          hd: "Heading-2",
+          text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatemsed autem natus unde esse similique accusantium beatae vel eius-2",
+        },
+        {
+          img: "c3.jpeg",
+          hd: "Heading-3",
+          text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatemsed autem natus unde esse similique accusantium beatae vel eius-3",
+        },
+        {
+          img: "c4.jpg",
+          hd: "Heading-4",
+          text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatemsed autem natus unde esse similique accusantium beatae vel eius-4",
+        },
+        {
+          img: "c5.jpg",
+          hd: "Heading-5",
+          text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatemsed autem natus unde esse similique accusantium beatae vel eius-5",
+        },
+        {
+          img: "c6.jpeg",
+          hd: "Heading-6",
+          text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatemsed autem natus unde esse similique accusantium beatae vel eius-6",
+        },
+      ];
+
+      let imgr = document.querySelector("img");
+      let h1r = document.querySelector("h1");
+      let pr = document.querySelector("p");
+      let ir = document.querySelectorAll(".dotcon i");
+      let i = 0;
+
+      let fwd = () => {
+        ir[i].className = "fa-regular fa-circle";
+        i = (i + 1) % 6;
+        imgr.src = arr[i].img;
+        h1r.innerHTML = arr[i].hd;
+        pr.innerHTML = arr[i].text;
+        ir[i].className = "fa-solid fa-circle";
+      };
+      let bkw = () => {
+        ir[i].className = "fa-regular fa-circle";
+
+        if (i == 0) {
+          i = 5;
+        } else {
+          i--;
+        }
+        imgr.src = arr[i].img;
+        h1r.innerHTML = arr[i].hd;
+        pr.innerHTML = arr[i].text;
+        ir[i].className = "fa-solid fa-circle";
+      };
+
+      let setI = (ind) => {
+        ir[i].className = "fa-solid fa-circle";
+
+        i = ind;
+        imgr.src = arr[i].img;
+        h1r.innerHTML = arr[i].hd;
+        pr.innerHTML = arr[i].text;
+        ir[i].className = "fa-solid fa-circle";
+      };
+      setInterval(fwd, 10000);
+    </script>
+  </body>
+</html>

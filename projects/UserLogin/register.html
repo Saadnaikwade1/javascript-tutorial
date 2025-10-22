@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+  </head>
+  <body>
+    <h1>Registration</h1>
+    <div style="color: red; height: 20px"></div>
+    <input type="text" placeholder="Enter Name" />
+    <input type="email" placeholder="Enter Email" />
+    <input type="password" placeholder="Enter Password" />
+    <button onclick="reg()">Register</button>
+
+    <script>
+
+      let ipr = document.querySelectorAll("input");
+      let div = document.querySelector("div");
+
+      let reg = () => {
+
+        if (ipr[0].value != "" && ipr[1].value != "" && ipr[2].value != "") {
+
+          localStorage.setItem("name", ipr[0].value);
+          localStorage.setItem("email", ipr[1].value);
+          localStorage.setItem("pass", ipr[2].value);
+          window.location="login.html"
+
+          ipr.forEach((e) => (e.value = ""));
+
+          div.innerHTML = "";
+
+
+        } else {
+
+          div.innerHTML = "fill the all credentials";
+          // setTimeout(() => {
+          //  div.innerHTML=""
+          // }, 5000);
+        }
+      };
+    </script>
+  </body>
+</html>

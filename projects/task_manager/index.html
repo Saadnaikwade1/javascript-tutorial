@@ -112,27 +112,40 @@
     </div>
     <table></table>
     <script>
-      let tasks = [],
-        eind;
+      let lg = localStorage.getItem("tasks");
+      // console.log(lg, JSON.parse(lg));
+      let tasks = [];
+      if (lg !== null) {
+        tasks = JSON.parse(lg);
+      }
+      let eind;
       let ipr = document.querySelector("input");
       let btnr = document.querySelectorAll("button");
       let tblr = document.querySelector("table");
+
+      function setLG() {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      }
 
       function disp() {
         let s = "";
         for (let i = 0; i < tasks.length; i++) {
           s += `<tr>
-      <td>${tasks[i]}</td>
-      <td><i class="fa-solid fa-pen" onclick="edit(${i})"></i></td>
-      <td><i class="fa-solid fa-trash" onclick="del(${i})"></i></td>
-    </tr>`;
+        <td>${tasks[i]}</td>
+        <td><i class="fa-solid fa-pen" onclick="edit(${i})"></i></td>
+        <td><i class="fa-solid fa-trash" onclick="del(${i})"></i></td>
+      </tr>`;
         }
         tblr.innerHTML = s;
       }
 
       function add() {
-        if (ipr.value.trim() === "") return; // ignore empty input
+        if (ipr.value == "") {
+          alert("Empty text!");
+          return;
+        }
         tasks.push(ipr.value);
+        setLG();
         disp();
         ipr.value = "";
       }
@@ -146,6 +159,7 @@
 
       function upd() {
         tasks[eind] = ipr.value;
+        setLG();
         disp();
         btnr[1].style.display = "none";
         btnr[0].style.display = "inline-block";
@@ -154,8 +168,11 @@
 
       function del(ind) {
         tasks.splice(ind, 1);
+        setLG();
         disp();
       }
+
+      disp();
     </script>
   </body>
 </html>

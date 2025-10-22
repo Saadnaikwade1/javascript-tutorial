@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accordian</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+      }
+      .con {
+        width: 100%;
+        border: 2px solid gray;
+        margin-top: 5px;
+        background-color: yellow;
+      }
+      .con h1 {
+        width: 100%;
+        font-size: 50px;
+        background-color: rgb(69, 69, 220);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 20px;
+      }
+      .con p {
+        width: 98%;
+        font-size: 20px;
+        padding: 5px 20px;
+        margin: auto;
+        background-color: gray;
+        text-align: justify;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="con">
+      <h1>
+        <span>Item-1</span>
+        <i class="fa-solid fa-caret-down" onclick="fun(0)"></i>
+      </h1>
+      <p style="display: none">Lorem ipsum dolor sit amet.</p>
+    </div>
+    <div class="con">
+      <h1>
+        <span>Item-2</span>
+        <i class="fa-solid fa-caret-down" onclick="fun(1)"></i>
+      </h1>
+      <p style="display: none">Lorem ipsum dolor sit amet.</p>
+    </div>
+    <div class="con">
+      <h1>
+        <span>Item-3</span>
+        <i class="fa-solid fa-caret-down" onclick="fun(2)"></i>
+      </h1>
+      <p style="display: none">Lorem ipsum dolor sit amet.</p>
+    </div>
+    <div class="con">
+      <h1>
+        <span>Item-4</span>
+        <i class="fa-solid fa-caret-down" onclick="fun(3)"></i>
+      </h1>
+      <p style="display: none">Lorem ipsum dolor sit amet.</p>
+    </div>
+    <div class="con">
+      <h1>
+        <span>Item-5</span>
+        <i class="fa-solid fa-caret-down" onclick="fun(4)"></i>
+      </h1>
+
+      <p style="display: none">Lorem ipsum dolor sit amet.</p>
+    </div>
+
+    <script>
+      let pr = document.querySelectorAll("p");
+      let ir = document.querySelectorAll("i");
+      let prev = 0;
+      function fun(i) {
+
+        /* SOLUTION-1 */        
+        // if ((prev == i)) {
+        //   let l = ir[i].classList;
+        //   if (l.contains("fa-caret-down")) {
+        //     l.replace("fa-caret-down", "fa-caret-up");
+        //     ir[i].classList = l;
+        //     pr[i].style.display = "block";
+        //   } else {
+        //     l.replace("fa-caret-up", "fa-caret-down");
+        //     ir[i].classList = l;
+        //     pr[i].style.display = "none";
+        //   }
+        // }else{
+        //     prev=i
+        // }
+      
+        /*  SOLUTION-2 */
+        // if (prev) {
+        //   if (ir[i].className == "fa-solid fa-caret-down") {
+        //     ir[i].className = "fa-solid fa-caret-up";
+        //     pr[i].style.display = "block";
+        //   } else {
+        //     ir[i].className = "fa-solid fa-caret-down";
+        //     pr[i].style.display = "none";
+        //   }
+        // } else {
+        //   ir[prev].className = "fa-solid fa-caret-down";
+        //   pr[prev].style.display = "none";
+        //   ir[i].className = "fa-solid fa-caret-up";
+        //   pr[i].style.display = "block";
+        //   prev = i;
+        // }
+
+       /* SOLUTION-3 */
+
+       if(pr[i].display=="none"){
+        ir[i].classList.replace("fa-caret-down",fa)
+       }
+        
+      }
+    </script>
+  </body>
+</html>
