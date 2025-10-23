@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO list</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -11,167 +12,196 @@
       referrerpolicy="no-referrer"
     />
     <style>
-      body {
-        background-color: #f5f5f5;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding-top: 50px;
-      }
-      h1 {
-        font-size: 50px;
-        font-weight: bold;
-        font-style: italic;
-      }
-      input[type="text"] {
-        width: 250px;
-        padding: 10px 15px;
-        font-size: 1rem;
-        border: 2px solid #dcdde1;
-        border-radius: 5px;
-        outline: none;
-        transition: border 0.3s;
-      }
-      input[type="text"]:focus {
-        border-color: darkkhaki;
-      }
-      button {
-        padding: 10px 15px;
-        margin-left: 10px;
-        background-color: blue;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 1rem;
-        transition: background 0.3s;
-      }
-      button:hover {
-        background-color: rgba(0, 0, 250, 0.5);
-      }
-      table {
-        margin-top: 30px;
-        border-collapse: collapse;
-        width: 30%;
-        background-color: white;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        overflow: hidden;
-      }
-      table tr {
-        border-bottom: 1px solid #f1f2f6;
-      }
-      table td {
-        padding: 12px 15px;
-        text-align: left;
-        font-size: 1rem;
-      }
-      .fa-pen,
-      .fa-trash {
-        cursor: pointer;
-        color: blue;
-        margin-left: 10px;
-        transition: color 0.3s;
-      }
-      .fa-trash:hover {
-        color: red;
-      }
-      .fa-pen:hover {
-        color: orange;
-      }
-      @media screen and (max-width: 600px) {
-        h1 {
-          font-size: 35px;
-        }
-        input[type="text"] {
-          width: 90%;
-          padding-left: 10px;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
 
-          margin-bottom: 10px;
-        }
+  body {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 60px;
+  }
 
-        button {
-          width: 50%;
-          margin: 5px 0 0 0;
-        }
-        table {
-          width: 90%;
-        }
-      }
-    </style>
-    <title>Task Manager</title>
+  .container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transition: 0.3s ease;
+  }
+
+  .container:hover {
+    transform: translateY(-3px);
+  }
+
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    margin-bottom: 10px;
+    font-size: 15px;
+    transition: border-color 0.2s;
+  }
+
+  input:focus {
+    border-color: #2575fc;
+  }
+
+  button {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  button:first-of-type {
+    background-color: #2575fc;
+    color: white;
+  }
+
+  button:first-of-type:hover {
+    background-color: #1b5edc;
+  }
+
+  button:last-of-type {
+    background-color: #f39c12;
+    color: white;
+  }
+
+  button:last-of-type:hover {
+    background-color: #d68910;
+  }
+
+  /* === Table === */
+  table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+    color: #333;
+  }
+
+  tr:hover {
+    background-color: #f9f9f9;
+  }
+
+  td i {
+    cursor: pointer;
+    margin: 0 6px;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+
+  td i.fa-pen {
+    color: #2ecc71;
+  }
+
+  td i.fa-pen:hover {
+    color: #27ae60;
+  }
+
+  td i.fa-trash {
+    color: #e74c3c;
+  }
+
+  td i.fa-trash:hover {
+    color: #c0392b;
+  }
+
+ 
+</style>
+
   </head>
   <body>
-    <h1>Task Manager</h1>
-    <div>
-      <input type="text" placeholder="Enter Task" />
+  <div class="container">
+    <h2>My TODO List</h2>
+    <input type="text" placeholder="Enter task" />
+    <div style="display: flex; justify-content: space-between">
       <button onclick="add()">Add</button>
-      <button style="display: none" onclick="upd()">Update</button>
+      <button onclick="upd()" style="display: none">Update</button>
     </div>
     <table></table>
+  </div>
+
+
     <script>
-      let lg = localStorage.getItem("tasks");
-      // console.log(lg, JSON.parse(lg));
-      let tasks = [];
-      if (lg !== null) {
-        tasks = JSON.parse(lg);
-      }
-      let eind;
+      let task = JSON.parse(localStorage.getItem("task")) || [],
+        eind;
       let ipr = document.querySelector("input");
       let btnr = document.querySelectorAll("button");
       let tblr = document.querySelector("table");
 
-      function setLG() {
-        localStorage.setItem("tasks", JSON.stringify(tasks));
+      //to store in the local storage
+      function setLocal() {
+        localStorage.setItem("task", JSON.stringify(task));
       }
 
       function disp() {
         let s = "";
-        for (let i = 0; i < tasks.length; i++) {
-          s += `<tr>
-        <td>${tasks[i]}</td>
-        <td><i class="fa-solid fa-pen" onclick="edit(${i})"></i></td>
-        <td><i class="fa-solid fa-trash" onclick="del(${i})"></i></td>
-      </tr>`;
+        for (let i = 0; i < task.length; i++) {
+          s =
+            s +
+            `<tr><td>${task[i]}</td>
+                    <td><i class="fa-solid fa-pen" onclick="edit(${i})"></i></td>
+                    <td><i class="fa-solid fa-trash" onclick="del(${i})"></i></td></tr>`;
         }
         tblr.innerHTML = s;
       }
-
       function add() {
-        if (ipr.value == "") {
-          alert("Empty text!");
+        if (ipr.value != "") {
+          task.push(ipr.value);
+          setLocal();
+          disp();
+
+          ipr.value = "";
+        } else {
           return;
         }
-        tasks.push(ipr.value);
-        setLG();
-        disp();
-        ipr.value = "";
       }
-
       function edit(ind) {
-        ipr.value = tasks[ind];
+        ipr.value = task[ind];
+
         btnr[0].style.display = "none";
         btnr[1].style.display = "inline-block";
         eind = ind;
       }
-
       function upd() {
-        tasks[eind] = ipr.value;
-        setLG();
+        task[eind] = ipr.value;
+        setLocal();
         disp();
         btnr[1].style.display = "none";
         btnr[0].style.display = "inline-block";
         ipr.value = "";
       }
-
       function del(ind) {
-        tasks.splice(ind, 1);
-        setLG();
+        task.splice(ind, 1);
+        setLocal();
         disp();
       }
-
       disp();
     </script>
   </body>

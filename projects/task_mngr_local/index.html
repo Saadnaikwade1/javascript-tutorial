@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" placeholder="Enter uid" name="uid" />
+    <input type="text" placeholder="Enter title" name="title" />
+    <textarea></textarea>
+    <input type="date" name="dl" />
+    <button onclick="add()">Add task</button>
+    <button onclick="update()" style="display: none">Update</button>
+    <table></table>
+    <table></table>
+
+    <script>
+      let ipr = document.querySelectorAll("input");
+      let txtar = document.querySelector("textarea");
+      let tblr = document.querySelectorAll("table");
+      let add = () => {
+        let obj = {};
+        for (let i = 0; i < ipr.length; i++) {
+          obj[ipr[i].name] = ipr[i].value;
+        }
+        obj.desc = txtar.value;
+        let arr = localStorage.getItem("task");
+        if (arr) {
+          arr = JSON.parse(arr);
+        } else {
+          arr = [];
+        }
+        arr.push(obj);
+        localStorage.setItem("task", JSON.stringify(arr));
+        ipr[0].value = "";
+        ipr[1].value = "";
+        ipr[2].value = "";
+        txtar.value = "";
+        disp();
+      };
+      let disp = () => {
+        let s =
+          "<tr colspan='8'><th>Pending Tasks:</th></tr> <tr><th>S.NO</th> <th>UID</th> <th>Title</th> <th>Disc</th> <th>Dedline</th> <th></th> <th></th> <th></th> </tr>";
+        let arr = localStorage.getItem("task");
+        if (arr) {
+          arr = JSON.parse(arr);
+          if (arr.length != 0) {
+            for (let i = 0; i < arr.length; i++) {
+              s =
+                s +
+                `<tr>
+                      <td>${i + 1}</td>
+                      <td>${arr[i].uid}</td>
+                      <td>${arr[i].title}</td>
+                      <td>${arr[i].desc}</td>
+                      <td>${arr[i].dl}</td>
+                      <td><button>Edit</button></td>
+                      <td><button>Delete</button></td>
+                      <td><button>Completed</button></td>
+                      </tr>`;
+            }
+            tblr[0].innerHTML = s;
+            tblr[0].border = "2";
+          } else {
+            tblr[0].innerHTML = "";
+            tblr[0].border = "0";
+          }
+        } else {
+          tblr[0].innerHTML = "";
+          tblr[0].border = "0";
+        }
+      };
+      disp();
+    </script>
+  </body>
+</html>
