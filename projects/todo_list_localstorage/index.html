@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+     <style>
+      /* 🌿 Global Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #f8f9fc, #e8f0fe);
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      h1 {
+        color: #2b4eff;
+        margin-bottom: 20px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      /* 🧩 Input Section */
+      .input-container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        width: 90%;
+        max-width: 700px;
+        margin-bottom: 30px;
+      }
+
+      input,
+      textarea {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 10px;
+        width: 100%;
+        max-width: 200px;
+        font-size: 14px;
+        transition: 0.3s;
+      }
+
+      textarea {
+        width: 100%;
+        max-width: 450px;
+        height: 60px;
+        resize: none;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: #2b4eff;
+        box-shadow: 0 0 5px rgba(43, 78, 255, 0.3);
+      }
+
+      button {
+        background: #2b4eff;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #1f38cc;
+        transform: scale(1.05);
+      }
+
+      /* 📋 Table Section */
+      table {
+        border-collapse: collapse;
+        margin-top: 20px;
+        width: 90%;
+        max-width: 800px;
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      th,
+      td {
+        text-align: center;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+      }
+
+      th {
+
+        background: #2b4eff;
+        color: white;
+      }
+
+      tr:nth-child(even) {
+        background: #f8f9ff;
+      }
+
+      td button {
+        padding: 5px 10px;
+        margin: 2px;
+        font-size: 13px;
+        border-radius: 6px;
+      }
+
+      td button:nth-child(1) {
+        background: #ffc107;
+      }
+
+      td button:nth-child(2) {
+        background: #e63946;
+      }
+
+      td button:nth-child(3) {
+        background: #28a745;
+      }
+
+      td button:hover {
+        opacity: 0.9;
+      }
+
+      /* ✅ Completed Table */
+      table:last-of-type th {
+        background: #28a745;
+      }
+
+      @media (max-width: 600px) {
+        input,
+        textarea {
+          max-width: 100%;
+        }
+        table {
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🌟 ToDo Task Manager</h1>
+
+    <div class="input-container">
+      <input type="text" placeholder="Enter UID" name="uid" />
+      <input type="text" placeholder="Enter Title" name="title" />
+      <textarea placeholder="Enter Description"></textarea>
+      <input type="date" name="dl" />
+      <button onclick="add()">Add Task</button>
+      <button onclick="upd()" style="display: none">Update</button>
+    </div>
+
+    <table></table>
+    <table></table>
+
+    <script>
+      let ipr = document.querySelectorAll("input");
+      let txtar = document.querySelector("textarea");
+      let tblr = document.querySelectorAll("table");
+      let btnr = document.querySelectorAll("button");
+      let add = () => {
+        let obj = {};
+        for (let i = 0; i < ipr.length; i++) {
+          obj[ipr[i].name] = ipr[i].value;
+        }
+        obj.desc = txtar.value;
+        let arr = localStorage.getItem("task");
+        if (arr) {
+          arr = JSON.parse(arr);
+        } else {
+          arr = [];
+        }
+        if (
+          obj.uid !== "" &&
+          obj.title !== "" &&
+          obj.txtar !== "" &&
+          obj.dl !== ""
+        ) {
+          arr.push(obj);
+          localStorage.setItem("task", JSON.stringify(arr));
+          ipr[0].value = "";
+          ipr[1].value = "";
+          ipr[2].value = "";
+          txtar.value = "";
+          disp();
+        } else {
+          alert("⚠️ Please fill all fields!");
+        }
+      };
+      let disp = () => {
+        let s =
+          "<tr ><th colspan='8'>Pending Tasks</th></tr> <tr><th>S.NO</th> <th>UID</th> <th>Title</th> <th>Disc</th> <th>Dedline</th> <th></th> <th></th> <th></th> </tr>";
+        let arr = localStorage.getItem("task");
+        if (arr) {
+          arr = JSON.parse(arr);
+          if (arr.length != 0) {
+            for (let i = 0; i < arr.length; i++) {
+              s =
+                s +
+                `<tr>
+                      <td>${i + 1}</td>
+                      <td>${arr[i].uid}</td>
+                      <td>${arr[i].title}</td>
+                      <td>${arr[i].desc}</td>
+                      <td>${arr[i].dl}</td>
+                      <td><button onclick="edit(${i})">Edit</button></td>
+                      <td><button onclick="del(${i})">Delete</button></td>
+                      <td><button onclick="cmp(${i})">Completed</button></td>
+                      </tr>`;
+            }
+            tblr[0].innerHTML = s;
+            tblr[0].border = "2";
+          } else {
+            tblr[0].innerHTML = "";
+            tblr[0].border = "0";
+          }
+        } else {
+          tblr[0].innerHTML = "";
+          tblr[0].border = "0";
+        }
+      };
+
+      function edit(ind) {
+        let arr = JSON.parse(localStorage.getItem("task"));
+
+        ipr[0].value = arr[ind].uid;
+        ipr[1].value = arr[ind].title;
+        ipr[2].value = arr[ind].dl;
+        txtar.value = arr[ind].desc;
+        btnr[0].style.display = "none";
+        btnr[1].style.display = "inline-block";
+        eind = ind;
+      }
+      function upd() {
+        let arr = JSON.parse(localStorage.getItem("task"));
+        let obj = {};
+        for (let i = 0; i < ipr.length; i++) {
+          obj[ipr[i].name] = ipr[i].value;
+        }
+        obj.desc = txtar.value;
+        arr[eind] = obj;
+        localStorage.setItem("task", JSON.stringify(arr));
+        disp();
+        ipr[0].value = "";
+        ipr[1].value = "";
+        ipr[2].value = "";
+        txtar.value = "";
+        btnr[0].style.display = "inline-block";
+        btnr[1].style.display = "none";
+      }
+
+      function del(ind) {
+        let arr = JSON.parse(localStorage.getItem("task"));
+        arr.splice(ind, 1);
+        localStorage.setItem("task", JSON.stringify(arr));
+        disp();
+      }
+
+      //completed tasks
+      function cmp(ind) {
+        let carr = localStorage.getItem("cmptask");
+        let arr = JSON.parse(localStorage.getItem("task"));
+        if (carr) {
+          carr = JSON.parse(carr);
+        } else {
+          carr = [];
+        }
+        carr.push(arr[ind]);
+        arr.splice(ind, 1);
+        localStorage.setItem("task", JSON.stringify(arr));
+        localStorage.setItem("cmptask", JSON.stringify(carr));
+        disp();
+        cmpdisp();
+      }
+
+      //displaying completed functions
+      function cmpdisp() {
+        let s =
+          "<tr><th colspan='4'>Completed Tasks</th></tr><tr><th>SNO</th><th>UID</th><th>Title</th><th>Desc</th></tr>";
+        let arr = localStorage.getItem("cmptask");
+        if (arr) {
+          arr = JSON.parse(arr);
+          if (arr.length != 0) {
+            for (let i = 0; i < arr.length; i++) {
+              s =
+                s +
+                `<tr><td>${i+1}</td><td>${arr[i].uid}</td><td>${arr[i].title}</td><td>${arr[i].desc}</td> </tr>`;
+            }
+            tblr[1].innerHTML = s;
+            tblr[1].border = "2";
+          } else {
+            tblr[1].innerHTML = "";
+            tblr[1].border = "0";
+          }
+        } else {
+          tblr[1].innerHTML = "";
+          tblr[1].border = "0";
+        }
+      }
+      disp();
+      cmpdisp()
+    </script>
+  </body>
+</html>
