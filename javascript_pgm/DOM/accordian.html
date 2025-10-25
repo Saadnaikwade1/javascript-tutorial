@@ -85,8 +85,28 @@
       let ir = document.querySelectorAll("i");
       let prev = 0;
       function fun(i) {
-
-        /* SOLUTION-1 */        
+   console.log(prev,i);
+        
+        if (prev == i) {
+          if(pr[i].style.display == "none"){
+            pr[i].style.display = "block";
+            ir[i].classList.replace("fa-caret-down","fa-caret-up")
+          }
+          else{
+            pr[i].style.display = "none";
+             ir[i].classList.replace("fa-caret-up","fa-caret-down")
+          }
+        }
+       else{
+        pr[prev].style.display="none"
+         ir[prev].classList.replace("fa-caret-up","fa-caret-down")
+         pr[i].style.display = "block";
+          ir[i].classList.replace("fa-caret-down","fa-caret-up")
+        prev=i
+       }
+      console.log("after",prev,i);
+       
+        /* SOLUTION-1 */
         // if ((prev == i)) {
         //   let l = ir[i].classList;
         //   if (l.contains("fa-caret-down")) {
@@ -98,10 +118,9 @@
         //     ir[i].classList = l;
         //     pr[i].style.display = "none";
         //   }
-        // }else{
-        //     prev=i
         // }
-      
+        // prev=i
+
         /*  SOLUTION-2 */
         // if (prev) {
         //   if (ir[i].className == "fa-solid fa-caret-down") {
@@ -117,14 +136,8 @@
         //   ir[i].className = "fa-solid fa-caret-up";
         //   pr[i].style.display = "block";
         //   prev = i;
+        //   console.log(prev);
         // }
-
-       /* SOLUTION-3 */
-
-       if(pr[i].display=="none"){
-        ir[i].classList.replace("fa-caret-down",fa)
-       }
-        
       }
     </script>
   </body>
